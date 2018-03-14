@@ -76,7 +76,7 @@
 			</tr>
 		</table>
 	</form:form>
-	
+
 <br>
 	<div>
 		<a href="${dateSort}">sort by date</a>

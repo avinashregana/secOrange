@@ -3,8 +3,6 @@ package com.secVault.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.secVault.modal.LoginForm;
 import com.secVault.service.Service;
 import com.secVault.validators.LoginValidator;
@@ -55,7 +52,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginFormSubmit( Model model, @ModelAttribute("loginnnn") @Validated LoginForm loginForm, HttpServletRequest request , BindingResult result)//,@ModelAttribute("searchString") Search searchString) 
+	public String loginFormSubmit( Model model, @ModelAttribute("loginnnn") @Validated LoginForm loginForm,BindingResult result, HttpServletRequest request )//,@ModelAttribute("searchString") Search searchString) 
 	{
 System.out.println("in login post........5......");
 		//Map<String, Object> map = model.asMap();
@@ -72,7 +69,7 @@ System.out.println("in login post........5......");
 		{
 			System.out.println("in if binding result has error....6.......");
 			//model.addAttribute("register", new Register());
-			model.addAttribute("login", "All fiels must be filled");
+			// model.addAttribute("login", "All fiels must be filled");
 
 			return "login";
 		}
@@ -88,7 +85,6 @@ System.out.println("in login post........5......");
 		else {
 			System.out.println("else case in login controller");
 			model.addAttribute("login", "login failed invalid username or password");
-
 		}
 
 		return "login";

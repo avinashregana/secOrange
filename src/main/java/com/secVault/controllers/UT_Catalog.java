@@ -44,6 +44,10 @@ public class UT_Catalog {
 		
 	}
 	
+	public void testJsonFormat() {
+		
+	}
+	
 	private SecAccountsEntity createSecValutAcct() {
 		
 		SecAccountsEntity secAcctEntity = new SecAccountsEntity();

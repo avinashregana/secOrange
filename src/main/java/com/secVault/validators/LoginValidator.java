@@ -11,6 +11,7 @@ import com.secVault.modal.LoginForm;
 public class LoginValidator implements Validator {
 
 	
+	
 	@Override
 	public boolean supports(Class<?> obj1) {
 		System.out.println("inside supports () in login validator.....2.......");
@@ -22,7 +23,8 @@ public class LoginValidator implements Validator {
 	public void validate(Object obj, Errors error) {
 		System.out.println("in validate method....3........");
 		LoginForm loginform = (LoginForm) obj ;
-		ValidationUtils.rejectIfEmptyOrWhitespace(error, "username", "", "enter valid userName");
+		
+		ValidationUtils.rejectIfEmptyOrWhitespace(error, "username", "", "enter valid username");
 		ValidationUtils.rejectIfEmptyOrWhitespace(error, "password", "", "enter valid password");
 		
 		System.out.println("in validate method....4........");

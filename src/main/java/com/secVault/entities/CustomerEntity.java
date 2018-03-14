@@ -1,6 +1,8 @@
 package com.secVault.entities;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,13 +10,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "customer")
 public class CustomerEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public int id;
+	public int CustId;
 	
 	@Column
 	public String username ;
@@ -37,24 +41,45 @@ public class CustomerEntity {
 	@Column
 	String email;
 	
-	@Column
-	String dob ;
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column
+	Date dob ;
+	
+	@Temporal(TemporalType.DATE)
 	@Column
 	Date createdate;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column
+	Date updateDate;
+	
+	/**
+	 * @return the updateDate
+	 */
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	/**
+	 * @param updateDate the updateDate to set
+	 */
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
 
 	/**
 	 * @return the id
 	 */
 	public int getId() {
-		return id;
+		return CustId;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(int id) {
-		this.id = id;
+		this.CustId = id;
 	}
 
 	/**
@@ -158,14 +183,14 @@ public class CustomerEntity {
 	/**
 	 * @return the dob
 	 */
-	public String getDob() {
+	public Date getDob() {
 		return dob;
 	}
 
 	/**
 	 * @param dob the dob to set
 	 */
-	public void setDob(String dob) {
+	public void setDob(Date dob) {
 		this.dob = dob;
 	}
 

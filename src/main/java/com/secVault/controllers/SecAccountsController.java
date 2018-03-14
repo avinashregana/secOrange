@@ -2,6 +2,7 @@ package com.secVault.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.secVault.modal.LoginForm;
 import com.secVault.modal.Search;
 import com.secVault.modal.SecAccounts;
 import com.secVault.service.Service;

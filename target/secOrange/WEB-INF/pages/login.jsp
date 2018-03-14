@@ -21,16 +21,9 @@
 	src="/WebContent/WEB-INF/resources/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-
-
 	<h1>Helloo.. Welcome to Spring MVC world!!!!</h1>
 	<div class="container">
 		<spring:url value="/login" var="loginSubmit" />
-
-
-
-
 		<form:form class="form-horizontal" method="post"
 			modelAttribute="loginnnn" action="${loginSubmit}">
 			<c:if test="${not empty login }">
@@ -50,7 +43,7 @@
 		</form:form>
 	</div>
 	<div>
-		New User ? <a href="/SecVaultInSpring/register">Register Here</a>
+		New User ? <a href="/secOrange/register">Register Here</a>
 	</div>
 </body>
 </html>

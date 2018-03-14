@@ -25,42 +25,51 @@
 					<td>User Name</td>
 					<td><form:input path="username" type="text"
 							class="form-control" id="username" placeholder="Username" /></td>
+							<td><form:errors path="username" style="color:red;" /></td>
 				</tr>
 				<tr>
 					<td>Password</td>
 					<td><form:password path="password" class="form-control"
 							id="password" placeholder="password" /></td>
+						<td>	<form:errors path="password" style="color:red;" /></td>
 				</tr>
 				<tr>
 					<td>First Name</td>
 					<td><form:input path="firstname" type="text"
 							class="form-control" id="firstname" placeholder="firstname" /></td>
+						<td>	<form:errors path="firstname" style="color:red;" /></td>
+							
 				</tr>
 				<tr>
 					<td>Last Name</td>
 					<td><form:input path="lastname" type="text"
 							class="form-control" id="lastname" placeholder="lastname" /></td>
+						<td>	<form:errors path="lastname" style="color:red;" /> </td>
 				</tr>
 				<tr>
 					<td>Gender*</td>
 					<td><form:radiobutton path="gender" value="M" />Male <form:radiobutton
 							path="gender" value="F" />Female</td>
+						<td>	<form:errors path="gender" style="color:red;" /></td>
 				<tr>
 					<td>SSN</td>
 					<td><form:input path="ssn" type="text" id="ssn"
 							placeholder="ssn" /></td>
+						<td>	<form:errors path="ssn" style="color:red;" /></td>
 				</tr>
 
 				<tr>
 					<td>Email*</td>
 					<td><form:input path="email" type="text" id="email"
 							placeholder="email" /></td>
+						<td>	<form:errors path="email" style="color:red;" /></td>
 				</tr>
 
 				<tr>
 					<td>DOB*</td>
 					<td><form:input path="dob" type="text" id="dob"
 							placeholder="dob" />
+						<td>	<form:errors path="dob" style="color:red;" /></td>
 				</tr>
 
 				<tr>

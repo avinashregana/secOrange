@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,6 +18,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.secVault.entities.CustomerEntity;
 import com.secVault.entities.SecAccountsEntity;
 import com.secVault.modal.Customer;
 
@@ -26,7 +28,6 @@ import com.secVault.modal.Customer;
 public class RepositoryImpl implements Repository{
 
 	private static final String DB_URL =  "jdbc:mysql://localhost:3306/sec_vault?autoReconnect=true&useSSL=false";;
-
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -52,31 +53,7 @@ public class RepositoryImpl implements Repository{
 		}
 		return con;		
 	}
-	@Override
-	public Customer fetchCustomerByUsername(String username) {
-		System.out.println("in dao fetchCustomerByUsername()");
-		int i=0;
-		PreparedStatement Preparedstmt;
-		Connection con = getConnection();
-		boolean result = false;
-		Customer cust = null;
-		try {
-			Preparedstmt = con.prepareStatement("select * from sec_vault.customer where username = ? ");
-			Preparedstmt.setString(1, username);
-			ResultSet rslogin = Preparedstmt.executeQuery();
-			if(rslogin.next()) {
-				cust = new Customer();
-				cust.setFirstname(rslogin.getString("firstname"));
-				cust.setLastname(rslogin.getString("lastname"));
-				cust.setPassword(rslogin.getString("password"));
-				cust.setUsername(rslogin.getString("username"));
-			}
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return cust;
-	}
+
 	@Override
 	public boolean insertCustomer(Customer cust) {
 		System.out.println("in dao ");
@@ -127,9 +104,6 @@ public class RepositoryImpl implements Repository{
 	}
 
 
-	/**
-	 * hibernate realted testing methoid
-	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SecAccountsEntity> fetchAllSecAccount(String userName) {
@@ -155,10 +129,8 @@ public class RepositoryImpl implements Repository{
 
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-
 		session.save(account);
 		//System.out.println(session.save(account).getClass().getName());
-
 		tx.commit();
 		System.out.println("in dao after save");
 		session.close();
@@ -186,9 +158,47 @@ public class RepositoryImpl implements Repository{
 				secAccountsListAfterSearch.add(var);
 			}
 		}
-
 		return secAccountsListAfterSearch;
 	}
 
 
+	@Override
+	public boolean insertCustomer(CustomerEntity custEntity) {
+
+		System.out.println(custEntity.getDob());
+
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.save(custEntity);
+		tx.commit();
+		System.out.println("in dao after saveing in customerEntity");
+		session.close();
+
+		return true;
+	}
+	@Override
+	public Customer fetchCustomerByUsername(String username) {
+		System.out.println("in dao fetchCustomerByUsername()");
+
+		PreparedStatement Preparedstmt;
+		Connection con = getConnection();
+		boolean result = false;
+		Customer cust = null;
+		try {
+			Preparedstmt = con.prepareStatement("select * from sec_vault.customer where username = ? ");
+			Preparedstmt.setString(1, username);
+			ResultSet rslogin = Preparedstmt.executeQuery();
+			if(rslogin.next()) {
+				cust = new Customer();
+				cust.setFirstname(rslogin.getString("firstname"));
+				cust.setLastname(rslogin.getString("lastname"));
+				cust.setPassword(rslogin.getString("password"));
+				cust.setUsername(rslogin.getString("username"));
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cust;
+	}
 }

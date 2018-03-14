@@ -1,11 +1,14 @@
 package com.secVault.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.TreeSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.secVault.entities.AddressEntity;
+import com.secVault.entities.CustomerEntity;
 import com.secVault.entities.SecAccountsEntity;
 import com.secVault.modal.AddressPOJO;
 import com.secVault.modal.Customer;
@@ -17,9 +20,7 @@ public class ServiceImpl implements Service {
 
 	@Autowired
 	Repository customerDao;
-
-	//Connection con = customerDao.getConnection();
-
+	
 	@Override
 	public boolean loginCustomer(String username, String password) {
 		System.out.println("in  login service");
@@ -34,7 +35,35 @@ public class ServiceImpl implements Service {
 	@Override
 	public boolean customerRegister(Customer cust) {
 		System.out.println("in service customerRegister()");
-		if(customerDao.insertCustomer(cust) == true) {
+
+		CustomerEntity customerEntity = new CustomerEntity();
+
+		customerEntity.setFirstname(cust.getFirstname());
+		customerEntity.setLastname(cust.getLastname());
+		customerEntity.setUsername(cust.getUsername());
+		customerEntity.setEmail(cust.getEmail());
+		customerEntity.setGender(cust.getGender());
+		customerEntity.setPassword(cust.getPassword());
+		customerEntity.setSsn(cust.getSsn());
+		Calendar calender = Calendar.getInstance();
+		java.sql.Date createdate = new java.sql.Date(calender.getTime().getTime());
+		java.sql.Date updatedate = new java.sql.Date(calender.getTime().getTime());
+		java.sql.Date birth = null;
+		java.util.Date birthdate;
+		System.out.println("before try");
+
+		try {
+			birthdate = new SimpleDateFormat("MM/DD/YY").parse(cust.getDob());
+			birth = new java.sql.Date(birthdate.getTime());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		customerEntity.setCreatedate(createdate);
+		customerEntity.setUpdateDate(updatedate);
+		customerEntity.setDob(birth);
+		System.out.println("after setting into entity type");
+		if(customerDao.insertCustomer(customerEntity) == true) {
 			return true;
 		}
 		return false;
@@ -42,7 +71,6 @@ public class ServiceImpl implements Service {
 
 	@Override
 	public Customer fetchCustomerByUsername(String username) {
-
 		return null;
 	}
 
@@ -50,7 +78,6 @@ public class ServiceImpl implements Service {
 	public List<SecAccounts> getAccounts( String userName) {
 		System.out.println("in service pogo exchange");
 		List<SecAccounts> secAccountsList = new ArrayList<SecAccounts> ();
-
 		List<SecAccountsEntity> secAccounts = customerDao.fetchAllSecAccount(userName);
 		AddressPOJO addressPOJO;
 		java.util.Date createdateJava =null;
@@ -68,10 +95,10 @@ public class ServiceImpl implements Service {
 			secAccountsObject.setCountry(var.getCountry());
 			secAccountsObject.setCreateDate(var.getCreateDate());
 			secAccountsObject.setUpdateDate(var.getUpdateDate());
-			
-//			System.out.println("in service retrieving date from pogo object");
-//		
-//			System.out.println(secAccountsObject.getCreateDate() + "  date set to pogo");
+
+			//			System.out.println("in service retrieving date from pogo object");
+			//		
+			//			System.out.println(secAccountsObject.getCreateDate() + "  date set to pogo");
 
 			addressPOJO = new AddressPOJO();
 			AddressEntity addressEntity = var.getAddressEntity();
@@ -84,14 +111,10 @@ public class ServiceImpl implements Service {
 				addressPOJO.setState(var.getAddressEntity().getState());
 				addressPOJO.setZip(var.getAddressEntity().getZip());
 
-
 				secAccountsObject.setAddressPOJO(addressPOJO);
-
 			}
-
 			secAccountsList.add(secAccountsObject);
 		}
-
 		return secAccountsList;
 	}
 
@@ -102,7 +125,6 @@ public class ServiceImpl implements Service {
 		Calendar calender = Calendar.getInstance();
 		java.sql.Date createdate = new java.sql.Date(calender.getTime().getTime());
 		java.sql.Date updatedate = new java.sql.Date(calender.getTime().getTime());
-
 
 		System.out.println("in service");
 		SecAccountsEntity  secAccountsEntity = new SecAccountsEntity();
@@ -126,9 +148,8 @@ public class ServiceImpl implements Service {
 
 	@Override
 	public List<SecAccountsEntity> getSearchAccounts(String key , String CustUserName) {
-
+		
 		List<SecAccountsEntity> searchList = customerDao.searchByKey(key, CustUserName);
-
 		return searchList;
 	}
 
@@ -137,7 +158,7 @@ public class ServiceImpl implements Service {
 
 		List<SecAccounts> beforeSort = getAccounts(custUserName);
 		TreeSet<SecAccounts> aftersort = new TreeSet<SecAccounts>(new CompanySortComperator());
-
+		
 		for (SecAccounts var : beforeSort) {
 			aftersort.add(var);
 		}

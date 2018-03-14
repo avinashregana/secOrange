@@ -14,6 +14,7 @@ public class SecAccounts implements Comparable<SecAccounts>{
     private String country;
     private Date createDate;
     private Date updateDate;
+    
     /**
 	 * @return the createDate
 	 */

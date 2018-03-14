@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ page session="false"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,9 +21,9 @@
 	<h2>welcome to dashBoard</h2>
 
 	<br>
-	<a href="/SecVaultInSpring/SecAccounts">SECURE VAULT ACCOUNTS</a>
+	<a href="/secOrange/SecAccounts">SECURE VAULT ACCOUNTS</a>
 <br>
-	<a href="/SecVaultInSpring/AddAccount">Add crediantials of new account</a>
+	<a href="/secOrange/AddAccount">Add crediantials of new account</a>
 	
 	
 		
