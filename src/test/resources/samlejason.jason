@@ -1,0 +1,75 @@
+{
+	"username": "avinashr",
+	"firstname": "avinash",
+	"lastname": "regana",
+	"password": "1234",
+	"gender": "m",
+	"ssn": "1234",
+	"email": "avi@gmail.com",
+	"dob": "05/05/1994",
+	"createdate": "01/01/2018",
+	"updateDate": "01/01/2018",
+	"secAccounts": [{
+		"id": "1",
+		"companyName": "Amazon",
+		"accountUserName": "avinashr",
+		"accountPassword": "1234",
+		"accountEmail": "avinash@gmail.com",
+		"companyUrl": "Amazon.com",
+		"customerUserName": "avinashR",
+		"country": "us",
+		"createDate": "01/01/2018",
+		"updateDate": "01/01/2018",
+		"addressPOJO": [{
+				"addr_id": "1",
+				"addr_line1": "2001 gemini",
+				"addr_line2": "Apt 4",
+				"city": "hou",
+				"state": "tx ",
+				"zip": "77058 ",
+				"country": "US"
+			},
+			{
+				"addr_id": "2",
+				"addr_line1": "2001 bay area",
+				"addr_line2": "Apt 45",
+				"city": "sfo",
+				"state": "ca ",
+				"zip": "77058 ",
+				"country": "US"
+			}
+		]
+	}, {
+		"id": "2",
+		"companyName": "wallmart",
+		"accountUserName": "wallmart",
+		"accountPassword": "1234",
+		"accountEmail": "wallavinash@gmail.com",
+		"companyUrl": "wallmart.com",
+		"customerUserName": "avinashR",
+		"country": "US",
+		"createDate": "01/01/2018",
+		"updateDate": "01/01/2018",
+		"addressPOJO": [{
+				"addr_id": "1",
+				"addr_line1": "2001 gemini",
+				"addr_line2": "Apt 4",
+				"city": "hou",
+				"state": "tx ",
+				"zip:": "77058 ",
+				"country": "US"
+			},
+
+			{
+				"addr_id": "2",
+				"addr_line1": "2001 bay area",
+				"addr_line2": "Apt 45",
+				"city": "sfo",
+				"state": "ca ",
+				"zip": "77058 ",
+				"country": "US"
+			}
+		]
+
+	}]
+}
